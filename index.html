@@ -89,7 +89,7 @@
 <header>
   <h1>PRENSA HDM</h1>
   <div class="sub">Horacio Marín · YPF</div>
-  <div class="act">Actualizado: <b>13/09/2026 a las 01:05</b></div>
+  <div class="act">Actualizado: <b>13/09/2026 a las 01:09</b></div>
 </header>
 
 <div class="wrap">
@@ -101,8 +101,8 @@
     <div class="selector">
       <button class="sel-btn" data-w="hoy"  onclick="setWin('hoy',this)">Hoy</button>
       <button class="sel-btn" data-w="ayer" onclick="setWin('ayer',this)">Ayer</button>
-      <button class="sel-btn" data-w="24h"  onclick="setWin('24h',this)">Últimas 24 h</button>
       <button class="sel-btn" data-w="7d"   onclick="setWin('7d',this)">Últimos 7 días</button>
+      <button class="sel-btn" data-w="30d"  onclick="setWin('30d',this)">Últimos 30 días</button>
     </div>
     <div class="sub">
       <div class="duo">
@@ -161,7 +161,7 @@
     <h4>Por onda (tono)</h4>
     <p><b>Buenos</b> = favorable a la imagen de YPF/Marín · <b>Sólo info</b> = neutra/informativa · <b>Negativos</b> = desfavorable. Se estima por palabras clave sobre el título; el % se calcula sobre historias. Es un termómetro, no un veredicto.</p>
     <h4>Las ventanas</h4>
-    <p><b>Hoy / Ayer</b>: por fecha de publicación. <b>Últimas 24 h</b>: las últimas 24 horas reales (usa la hora si la nota la trae). <b>Últimos 7 días</b>: la última semana.</p>
+    <p>Todas las ventanas filtran por <b>fecha de publicación</b> (no por cuándo se capturó). <b>Hoy / Ayer</b> · <b>Últimos 7 días</b> · <b>Últimos 30 días</b>.</p>
   </div>
 
   <footer>Prensa HDM · archivo de publicaciones sobre Horacio Marín y&nbsp;YPF</footer>
@@ -179,11 +179,7 @@ function filtrar(win){
   if(win==="hoy")  return DATOS.filter(r=>r.f===hoy);
   if(win==="ayer") return DATOS.filter(r=>r.f===masDias(-1));
   if(win==="7d"){const lim=masDias(-6);return DATOS.filter(r=>r.f&&r.f>=lim&&r.f<=hoy);}
-  if(win==="24h"){
-    const ahora=new Date(), limite=new Date(ahora.getTime()-24*3600*1000);
-    return DATOS.filter(r=>{ if(!r.f) return false;
-      const dt=new Date(r.f+"T"+(r.h||"00:00")+":00"); return dt>=limite && dt<=ahora; });
-  }
+  if(win==="30d"){const lim=masDias(-29);return DATOS.filter(r=>r.f&&r.f>=lim&&r.f<=hoy);}
   return DATOS;
 }
 function set(id,v){const e=document.getElementById(id); if(e) e.textContent=v;}
