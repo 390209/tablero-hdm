@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
 <title>Cobertura HDM · día × medio</title>
 <style>
 :root{--bg:#0B1C2C;--card:#12263A;--line:#1E3A54;--txt:#E8F1FA;--mute:#8AA0B8;--ok:#2ECC71;--zero:#C0392B;--hi:#1A4A6E}
@@ -41,7 +43,7 @@ td.total{font-weight:700;background:#0F2A40}
 <body>
 <div class="wrap">
   <h1>Cobertura archivada</h1>
-  <p class="sub">Filas = fecha de publicación · Columnas = medio (más→menos pubs) · Celda = apariciones · Actualizado: 14/09/2026 a las 02:26 · Ventana: últimos 90 días</p>
+  <p class="sub">Filas = fecha de publicación · Columnas = medio (más→menos pubs) · Celda = apariciones · Actualizado: 14/09/2026 a las 02:29 · Ventana: últimos 90 días</p>
   <div class="nav" id="nav-tiempo">
     <a href="./">← Tablero principal</a>
     <span class="lbl">Tiempo</span>
@@ -116,8 +118,9 @@ function setTipo(t, btn){
   pintar();
 }
 function ir(d){
-  const map={0:'cobertura-todo.html',10:'cobertura.html',30:'cobertura-30.html',60:'cobertura-60.html',90:'cobertura-90.html',365:'cobertura-365.html','todo':'cobertura-todo.html'};
-  location.href = map[d] || 'cobertura.html';
+  const map={0:'cobertura-todo.html',10:'cobertura-10.html',30:'cobertura-30.html',60:'cobertura-60.html',90:'cobertura-90.html',365:'cobertura-365.html','todo':'cobertura-todo.html'};
+  const q='?v=20260914c';
+  location.href = (map[d] || 'cobertura-10.html') + q;
 }
 pintar();
 </script>
