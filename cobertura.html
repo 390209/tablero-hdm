@@ -23,7 +23,9 @@ table{border-collapse:separate;border-spacing:0;min-width:100%;font-size:.78rem}
 th,td{padding:6px 8px;border-bottom:1px solid var(--line);border-right:1px solid var(--line);text-align:center;white-space:nowrap}
 th{background:#0F2A40;position:sticky;top:0;z-index:2;font-weight:650}
 th.medio{writing-mode:horizontal-tb;max-width:72px;white-space:normal;line-height:1.15;font-size:.72rem}
+thead tr.totales th{top:2.6em;background:#16344C;font-variant-numeric:tabular-nums;font-size:.8rem;z-index:3}
 th.sticky,td.sticky{position:sticky;left:0;z-index:1;background:#0F2A40;text-align:left;min-width:88px}
+thead tr.totales th.sticky{z-index:4;background:#16344C}
 td.sticky{background:#152E44;font-variant-numeric:tabular-nums}
 tr:hover td{background:var(--hi)}
 tr:hover td.sticky{background:#1A3A55}
@@ -37,7 +39,7 @@ td.total{font-weight:700;background:#0F2A40}
 <body>
 <div class="wrap">
   <h1>Cobertura archivada</h1>
-  <p class="sub">Filas = fecha de publicación · Columnas = medio · Celda = apariciones · Actualizado: 14/09/2026 a las 02:06 · Ventana: últimos 60 días</p>
+  <p class="sub">Filas = fecha de publicación · Columnas = medio · Celda = apariciones · Actualizado: 14/09/2026 a las 02:13 · Ventana: últimos 60 días</p>
   <div class="nav">
     <a href="./">← Tablero principal</a>
     <button type="button" data-d="30" onclick="ir(30,this)">30 días</button>
@@ -54,9 +56,14 @@ const DATA = {"cols": ["La Nación", "Clarín", "Infobae", "Ámbito", "Perfil", 
 function fmt(f){ if(!f) return ""; const p=f.split("-"); return p[2]+"/"+p[1]+"/"+p[0]; }
 function pintar(){
   const cols=DATA.cols, filas=DATA.filas;
+  const colTot=cols.map((_,i)=>filas.reduce((a,f)=>a+(f.vals[i]||0),0));
+  const granTot=colTot.reduce((a,b)=>a+b,0);
   let h='<table><thead><tr><th class="sticky">Día</th>';
   cols.forEach(c=>{ h+='<th class="medio">'+c+'</th>'; });
-  h+='<th>Total</th></tr></thead><tbody>';
+  h+='<th>Total</th></tr>';
+  h+='<tr class="totales"><th class="sticky">Total</th>';
+  colTot.forEach(n=>{ h+='<th>'+n+'</th>'; });
+  h+='<th>'+granTot+'</th></tr></thead><tbody>';
   filas.forEach(fila=>{
     h+='<tr><td class="sticky">'+fmt(fila.f)+'</td>';
     fila.vals.forEach(n=>{
