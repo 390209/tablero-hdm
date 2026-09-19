@@ -5,7 +5,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<meta name="tablero-build" content="20260919i">
+<meta name="tablero-build" content="20260919j">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123A5E">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -103,7 +103,7 @@
 <header>
   <h1>PRENSA HDM</h1>
   <div class="sub">Horacio Marín · YPF</div>
-  <div class="act">Actualizado: <b>19/09/2026 a las 02:19</b></div>
+  <div class="act">Actualizado: <b>19/09/2026 a las 02:21</b></div>
 </header>
 
 <div class="wrap">
@@ -317,8 +317,10 @@ function setWin(w, btn){
 }
 
 pinta("h", DATOS);
-pinta("r", filtrar("hoy"));
-var _b=document.querySelector('.sel-btn[data-w="hoy"]'); if(_b)_b.classList.add("activo");
+(function(){
+  var b=document.querySelector('.sel-btn[data-w="hoy"]');
+  setWin("hoy", b);
+})();
 </script>
 </body>
 </html>
