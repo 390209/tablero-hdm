@@ -2,6 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="tablero-build" content="20260919m">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#123A5E">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -41,8 +45,12 @@
            padding:8px 5px;border-radius:9px;cursor:pointer}
   .sel-btn.activo{background:var(--azul);color:#fff;border-color:var(--azul)}
 
-  .sub .rot{display:inline-block;background:var(--subbarra);color:var(--tinta);font-size:.68rem;
-            font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:3px 9px;border-radius:16px;margin-bottom:7px}
+  .sub{padding:0;margin:0}
+  .sub .rot{display:block;width:100%;box-sizing:border-box;
+            background:#0B4F8A;color:#FFFFFF;font-size:.8rem;
+            font-weight:800;letter-spacing:.04em;text-transform:uppercase;
+            padding:8px 12px;margin:0;border-radius:6px 6px 0 0;
+            border:none}
   .duo{display:flex;gap:16px;align-items:flex-end}
   .metric .n{font-size:2.5rem;font-weight:800;line-height:1;color:var(--azul);font-variant-numeric:tabular-nums}
   .metric.alt .n{font-size:1.6rem;color:var(--suave)}
@@ -52,16 +60,16 @@
   .tipo{background:var(--tarjeta);border-radius:9px;padding:9px 6px;text-align:center}
   .tipo .n{font-size:1.4rem;font-weight:800;color:var(--azul);font-variant-numeric:tabular-nums}
   .tipo .t{font-size:.72rem;color:var(--suave);font-weight:600;margin-top:1px}
-  .medios{display:flex;flex-direction:column}
-  .medio{display:flex;justify-content:space-between;align-items:baseline;padding:6px 3px;border-bottom:1px solid #EDF1F6}
+  .medios{display:flex;flex-direction:column;padding:2px 12px 4px;border-left:1.5px solid #B7C8DA;border-right:1.5px solid #B7C8DA;border-bottom:1.5px solid #B7C8DA;border-radius:0 0 6px 6px}
+  .medio{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1.5px dashed #8A9BB0}
   .medio:last-child{border-bottom:none}
-  .medio .m{font-size:.92rem;font-weight:600}
-  .medio .c{font-size:1.1rem;font-weight:800;color:var(--azul);font-variant-numeric:tabular-nums}
-  .vacio{color:var(--suave);font-size:.9rem;padding:6px 3px;font-weight:500}
+  .medio .m{font-size:.95rem;font-weight:600;color:var(--azul)}
+  .medio .c{font-size:1.2rem;font-weight:800;color:var(--azul);font-variant-numeric:tabular-nums}
+  .vacio{color:var(--suave);font-size:.9rem;padding:6px 0;font-weight:500}
   .onda{display:flex;flex-direction:column;gap:7px}
   .barra-onda{display:flex;height:13px;border-radius:7px;overflow:hidden;background:#EDF1F6}
   .barra-onda span{display:block;height:100%}
-  .onda-fila{display:flex;justify-content:space-between;align-items:center;font-size:.95rem;font-weight:700;padding:1px}
+  .onda-fila{display:flex;justify-content:space-between;align-items:center;font-size:.95rem;font-weight:700;padding:1px 0}
   .onda-fila .et{display:flex;align-items:center;gap:7px;font-weight:600;color:var(--tinta)}
   .punto{width:12px;height:12px;border-radius:50%;display:inline-block}
   .onda-fila .v{font-variant-numeric:tabular-nums}
@@ -71,9 +79,10 @@
   .ver-notas{width:100%;border:1.5px solid var(--azul);background:#fff;color:var(--azul);
              font-family:inherit;font-size:.9rem;font-weight:700;padding:9px;border-radius:9px;cursor:pointer}
   .ver-notas.neg{border-color:var(--malo);color:var(--malo);margin-top:6px}
+  .ver-notas em{font-size:.72em;font-style:italic;font-weight:700;opacity:.9;letter-spacing:.02em}
   .lista{display:flex;flex-direction:column}
   .lista[hidden]{display:none}
-  .nota{display:block;padding:9px 3px;border-bottom:1px solid #EDF1F6;text-decoration:none;color:var(--tinta)}
+  .nota{display:block;padding:9px 0;border-bottom:1.5px dashed #8A9BB0;text-decoration:none;color:var(--tinta)}
   .nota:last-child{border-bottom:none}
   .nota .nmedio{display:block;font-size:.7rem;color:var(--suave);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
   .nota .ntit{display:block;font-size:.92rem;font-weight:600;margin-top:1px;line-height:1.3}
@@ -94,7 +103,7 @@
 <header>
   <h1>PRENSA HDM</h1>
   <div class="sub">Horacio Marín · YPF</div>
-  <div class="act">Actualizado: <b>19/09/2026 a las 03:34</b></div>
+  <div class="act">Actualizado: <b>19/09/2026 a las 08:09</b></div>
 </header>
 
 <div class="wrap">
@@ -104,7 +113,7 @@
   </div>
   <div class="cuerpo">
     <div class="selector">
-      <button class="sel-btn" data-w="hoy"  onclick="setWin('hoy',this)">Hoy</button>
+      <button class="sel-btn activo" data-w="hoy"  onclick="setWin('hoy',this)">Hoy</button>
       <button class="sel-btn" data-w="ayer" onclick="setWin('ayer',this)">Ayer</button>
       <button class="sel-btn" data-w="7d"   onclick="setWin('7d',this)">Últimos 7 días</button>
       <button class="sel-btn" data-w="30d"  onclick="setWin('30d',this)">Últimos 30 días</button>
@@ -130,7 +139,7 @@
     <div class="sub"><span class="rot">Por onda</span>
       <div class="onda" id="r-onda"></div></div>
     <button class="ver-notas" id="btn-notas" onclick="toggleLista('all')">Ver las notas ▾</button>
-    <button class="ver-notas neg" id="btn-notas-neg" onclick="toggleLista('neg')">Ver las notas negativas ▾</button>
+    <button class="ver-notas neg" id="btn-notas-neg" onclick="toggleLista('neg')">Ver las notas negativas <em>EN AJUSTE</em> ▾</button>
     <div class="lista" id="r-lista" hidden></div>
   </div>
 
@@ -168,7 +177,7 @@
     <h4>Medio, canal y formato</h4>
     <p><b>Medio</b>: la marca (La Nación, Neura…). <b>Canal</b>: dónde salió (web, YouTube, redes). <b>Formato</b>: artículo, video o gráfica.</p>
     <h4>Por onda (tono)</h4>
-    <p><b>Buenos</b> = favorable a la imagen de YPF/Marín · <b>Sólo info</b> = neutra/informativa · <b>Negativos</b> = desfavorable. Se estima por palabras clave sobre el título; el % se calcula sobre historias. Es un termómetro, no un veredicto.</p>
+    <p><b>Buenos</b> = favorable a la imagen de YPF/Marín · <b>Sólo info</b> = neutra/informativa · <b>Negativos</b> = desfavorable. La onda mide imagen de YPF/Marín (no sentimiento genérico): se clasifica con reglas híbridas calibradas con ejemplos que marca Diana. El % es sobre historias únicas (misma nota en varios medios = 1 historia).</p>
     <h4>Las ventanas</h4>
     <p>Todas las ventanas filtran por <b>fecha de publicación</b> (no por cuándo se capturó), salvo <b>Todo</b>, que es el archivo completo (igual que Histórico), incluidas notas sin fecha. <b>Hoy / Ayer</b> · <b>Últimos 7 días</b> · <b>Últimos 30 días</b> · <b>Todo</b>.</p>
   </div>
@@ -262,9 +271,14 @@ function renderLista(recs, modo){
       '<span class="ntit">'+t+'</span></a>';
   }).join("");
 }
+function labelNotasNeg(abierto){
+  return abierto
+    ? 'Ocultar notas negativas <em>EN AJUSTE</em> ▴'
+    : 'Ver las notas negativas <em>EN AJUSTE</em> ▾';
+}
 function resetBotonesLista(){
   document.getElementById("btn-notas").textContent="Ver las notas ▾";
-  document.getElementById("btn-notas-neg").textContent="Ver las notas negativas ▾";
+  document.getElementById("btn-notas-neg").innerHTML=labelNotasNeg(false);
 }
 function recsParaLista(modo){
   let recs=filtrar(winActual);
@@ -283,7 +297,7 @@ function toggleLista(modo){
   resetBotonesLista();
   c.removeAttribute("hidden");
   if(modo==="all") document.getElementById("btn-notas").textContent="Ocultar notas ▴";
-  else document.getElementById("btn-notas-neg").textContent="Ocultar notas negativas ▴";
+  else document.getElementById("btn-notas-neg").innerHTML=labelNotasNeg(true);
   renderLista(recsParaLista(modo), modo);
 }
 function toggleCriterios(){
@@ -292,7 +306,7 @@ function toggleCriterios(){
   else { c.setAttribute("hidden",""); b.textContent="Cómo se cuenta ▾"; }
 }
 
-let winActual="7d";
+let winActual="hoy";
 function setWin(w, btn){
   winActual=w;
   document.querySelectorAll(".sel-btn").forEach(b=>b.classList.remove("activo"));
@@ -303,8 +317,10 @@ function setWin(w, btn){
 }
 
 pinta("h", DATOS);
-pinta("r", filtrar("7d"));
-var _b=document.querySelector('.sel-btn[data-w="7d"]'); if(_b)_b.classList.add("activo");
+(function(){
+  var b=document.querySelector('.sel-btn[data-w="hoy"]');
+  setWin("hoy", b);
+})();
 </script>
 </body>
 </html>
