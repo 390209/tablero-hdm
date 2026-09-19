@@ -70,6 +70,7 @@
   .pend{font-size:.75rem;color:var(--suave);font-weight:500;margin-top:1px}
   .ver-notas{width:100%;border:1.5px solid var(--azul);background:#fff;color:var(--azul);
              font-family:inherit;font-size:.9rem;font-weight:700;padding:9px;border-radius:9px;cursor:pointer}
+  .ver-notas.neg{border-color:var(--malo);color:var(--malo);margin-top:6px}
   .lista{display:flex;flex-direction:column}
   .lista[hidden]{display:none}
   .nota{display:block;padding:9px 3px;border-bottom:1px solid #EDF1F6;text-decoration:none;color:var(--tinta)}
@@ -93,7 +94,7 @@
 <header>
   <h1>PRENSA HDM</h1>
   <div class="sub">Horacio Marín · YPF</div>
-  <div class="act">Actualizado: <b>19/09/2026 a las 01:47</b></div>
+  <div class="act">Actualizado: <b>19/09/2026 a las 01:49</b></div>
 </header>
 
 <div class="wrap">
@@ -128,7 +129,8 @@
       <div class="medios" id="r-medios"></div></div>
     <div class="sub"><span class="rot">Por onda</span>
       <div class="onda" id="r-onda"></div></div>
-    <button class="ver-notas" id="btn-notas" onclick="toggleLista()">Ver las notas ▾</button>
+    <button class="ver-notas" id="btn-notas" onclick="toggleLista('all')">Ver las notas ▾</button>
+    <button class="ver-notas neg" id="btn-notas-neg" onclick="toggleLista('neg')">Ver las notas negativas ▾</button>
     <div class="lista" id="r-lista" hidden></div>
   </div>
 
@@ -237,15 +239,19 @@ function pinta(p, recs){
   pintaOnda(p+"-onda",pos,neu,neg, Object.keys(tk).length>0);
 }
 
-function renderLista(recs){
+let listaModo=null; // null | 'all' | 'neg'
+function renderLista(recs, modo){
   const cont=document.getElementById("r-lista");
+  const vacio = (modo==="neg")
+    ? "No hay notas negativas en este período"
+    : "No hay notas en este período";
   const g={};
   recs.forEach(r=>{ if(!r.ti||!r.u) return;
     if(!g[r.k]) g[r.k]={rep:r,canales:{}};
     g[r.k].canales[r.c]=1;
     if(r.c==="Web") g[r.k].rep=r; });
   const hist=Object.values(g).sort((a,b)=>((b.rep.f||"")+(b.rep.h||"")).localeCompare((a.rep.f||"")+(a.rep.h||"")));
-  if(!hist.length){ cont.innerHTML='<div class="vacio">No hay notas en este período</div>'; return; }
+  if(!hist.length){ cont.innerHTML='<div class="vacio">'+vacio+'</div>'; return; }
   cont.innerHTML=hist.map(function(o){
     const r=o.rep, f=r.f?r.f.split("-").reverse().join("/"):"";
     const t=(r.ti||"").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -256,10 +262,29 @@ function renderLista(recs){
       '<span class="ntit">'+t+'</span></a>';
   }).join("");
 }
-function toggleLista(){
-  const c=document.getElementById("r-lista"), b=document.getElementById("btn-notas");
-  if(c.hasAttribute("hidden")){ c.removeAttribute("hidden"); b.textContent="Ocultar notas ▴"; renderLista(filtrar(winActual)); }
-  else { c.setAttribute("hidden",""); b.textContent="Ver las notas ▾"; }
+function resetBotonesLista(){
+  document.getElementById("btn-notas").textContent="Ver las notas ▾";
+  document.getElementById("btn-notas-neg").textContent="Ver las notas negativas ▾";
+}
+function recsParaLista(modo){
+  let recs=filtrar(winActual);
+  if(modo==="neg") recs=recs.filter(r=>r.o==="NEG");
+  return recs;
+}
+function toggleLista(modo){
+  const c=document.getElementById("r-lista");
+  if(listaModo===modo && !c.hasAttribute("hidden")){
+    c.setAttribute("hidden","");
+    listaModo=null;
+    resetBotonesLista();
+    return;
+  }
+  listaModo=modo;
+  resetBotonesLista();
+  c.removeAttribute("hidden");
+  if(modo==="all") document.getElementById("btn-notas").textContent="Ocultar notas ▴";
+  else document.getElementById("btn-notas-neg").textContent="Ocultar notas negativas ▴";
+  renderLista(recsParaLista(modo), modo);
 }
 function toggleCriterios(){
   const c=document.getElementById("criterios"), b=document.getElementById("btn-criterios");
@@ -273,7 +298,8 @@ function setWin(w, btn){
   document.querySelectorAll(".sel-btn").forEach(b=>b.classList.remove("activo"));
   if(btn) btn.classList.add("activo");
   pinta("r", filtrar(w));
-  if(!document.getElementById("r-lista").hasAttribute("hidden")) renderLista(filtrar(w));
+  if(listaModo && !document.getElementById("r-lista").hasAttribute("hidden"))
+    renderLista(recsParaLista(listaModo), listaModo);
 }
 
 pinta("h", DATOS);
