@@ -114,7 +114,7 @@
       <h2>Reporte</h2>
       <div class="fecha">publicado en el período elegido</div>
     </div>
-    <div class="act-right">Act <b>20/09/2026 a las 20:18</b></div>
+    <div class="act-right">Act <b>20/09/2026 a las 20:20</b></div>
   </div>
   <div class="cuerpo">
     <div class="selector">
@@ -270,18 +270,8 @@ function recsParaLista(modo){
 function toggleLista(modo){
   // Solo modo neg queda inline; 'all' abre notas.html via abrirNotas()
   if(modo!=="neg"){ abrirNotas(); return; }
-  const c=document.getElementById("r-lista");
-  if(listaModo===modo && !c.hasAttribute("hidden")){
-    c.setAttribute("hidden","");
-    listaModo=null;
-    resetBotonesLista();
-    return;
-  }
-  listaModo=modo;
-  resetBotonesLista();
-  c.removeAttribute("hidden");
-  document.getElementById("btn-notas-neg").innerHTML=labelNotasNeg(true);
-  renderLista(recsParaLista(modo), modo);
+  // EN AJUSTE (Diana 2026-09-20): botón visible, pero no despliega ni popula #r-lista
+  return;
 }
 function toggleCriterios(){
   const c=document.getElementById("criterios"), b=document.getElementById("btn-criterios");
