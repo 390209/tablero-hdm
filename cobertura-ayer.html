@@ -48,7 +48,7 @@ td.total{font-weight:700;background:#0F2A40}
 <body>
 <div class="wrap">
   <h1>Cobertura archivada</h1>
-  <p class="sub">Filas = fecha de publicación · Columnas = medio (más→menos pubs) · Celda = apariciones · Actualizado: 26/09/2026 a las 22:21 · Ventana: ayer</p>
+  <p class="sub">Filas = fecha de publicación · Columnas = medio (más→menos pubs) · Celda = apariciones · Actualizado: 27/09/2026 a las 00:21 · Ventana: ayer</p>
   <div class="nav" id="nav-tiempo">
     <a href="./">← Tablero principal</a>
     <span class="lbl">Tiempo</span>
@@ -71,7 +71,7 @@ td.total{font-weight:700;background:#0F2A40}
   <p class="foot">Prensa HDM · matriz de cobertura por fecha de publicación (no por fecha de captura).</p>
 </div>
 <script>
-const DATA = {"lim": "2026-09-25", "hoy": "2026-09-26", "dias": 1, "ventana": "ayer", "tipo": "todos", "por_tipo": {"todos": {"cols": ["iProfesional", "Clarín", "Diario Uno", "DinamicargWeb", "Fijap Liberal", "La Nación", "LM Neuquén", "Mejor Energía", "Perfil", "Vaca Muerta News"], "filas": [{"f": "2026-09-25", "vals": [2, 1, 1, 1, 1, 1, 1, 1, 1, 1], "total": 11}]}, "articulos": {"cols": ["iProfesional", "Clarín", "Diario Uno", "DinamicargWeb", "Fijap Liberal", "La Nación", "LM Neuquén", "Mejor Energía", "Perfil", "Vaca Muerta News"], "filas": [{"f": "2026-09-25", "vals": [2, 1, 1, 1, 0, 1, 1, 1, 1, 1], "total": 10}]}, "videos": {"cols": ["iProfesional", "Clarín", "Diario Uno", "DinamicargWeb", "Fijap Liberal", "La Nación", "LM Neuquén", "Mejor Energía", "Perfil", "Vaca Muerta News"], "filas": [{"f": "2026-09-25", "vals": [0, 0, 0, 0, 1, 0, 0, 0, 0, 0], "total": 1}]}, "fotos": {"cols": ["iProfesional", "Clarín", "Diario Uno", "DinamicargWeb", "Fijap Liberal", "La Nación", "LM Neuquén", "Mejor Energía", "Perfil", "Vaca Muerta News"], "filas": [{"f": "2026-09-25", "vals": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "total": 0}]}}, "cols": ["iProfesional", "Clarín", "Diario Uno", "DinamicargWeb", "Fijap Liberal", "La Nación", "LM Neuquén", "Mejor Energía", "Perfil", "Vaca Muerta News"], "filas": [{"f": "2026-09-25", "vals": [2, 1, 1, 1, 1, 1, 1, 1, 1, 1], "total": 11}]};
+const DATA = {"lim": "2026-09-26", "hoy": "2026-09-27", "dias": 1, "ventana": "ayer", "tipo": "todos", "por_tipo": {"todos": {"cols": ["laderechadiario", "Agarrá La Pala", "Ámbito", "Derecha Diario", "Diario Uno", "DiarioLiberalAr"], "filas": [{"f": "2026-09-26", "vals": [5, 1, 1, 1, 1, 1], "total": 10}]}, "articulos": {"cols": ["laderechadiario", "Agarrá La Pala", "Ámbito", "Derecha Diario", "Diario Uno", "DiarioLiberalAr"], "filas": [{"f": "2026-09-26", "vals": [5, 0, 1, 0, 1, 1], "total": 8}]}, "videos": {"cols": ["laderechadiario", "Agarrá La Pala", "Ámbito", "Derecha Diario", "Diario Uno", "DiarioLiberalAr"], "filas": [{"f": "2026-09-26", "vals": [0, 1, 0, 1, 0, 0], "total": 2}]}, "fotos": {"cols": ["laderechadiario", "Agarrá La Pala", "Ámbito", "Derecha Diario", "Diario Uno", "DiarioLiberalAr"], "filas": [{"f": "2026-09-26", "vals": [0, 0, 0, 0, 0, 0], "total": 0}]}}, "cols": ["laderechadiario", "Agarrá La Pala", "Ámbito", "Derecha Diario", "Diario Uno", "DiarioLiberalAr"], "filas": [{"f": "2026-09-26", "vals": [5, 1, 1, 1, 1, 1], "total": 10}]};
 function fmt(f){ if(!f) return ""; const p=f.split("-"); return p[2]+"/"+p[1]+"/"+p[0]; }
 function datasetActivo(){
   const pt=DATA.por_tipo||{};
